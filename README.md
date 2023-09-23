@@ -1,12 +1,9 @@
 # Implementación de login:
 
 Aspectos a incluir
-Deberá contar con todas las vistas realizadas en el hands on lab, así también como las rutas de router 
-para procesar el registro y el login. 
-Una vez completado el login, realizar la redirección directamente a la vista de productos.
-Agregar a la vista de productos un mensaje de bienvenida con los datos del usuario.
-Agregar validaciones a las rutas de vistas para que, si aún no estoy logueado, no pueda entrar a ver mi 
-perfil, y si ya estoy logueado, no pueda volver a loguearme o registrarme.
+Se deberá contar con un hasheo de contraseña utilizando bcrypt
+Se deberá contar con una implementación de passport, tanto para register como para login.
+Implementar el método de autenticación de GitHub a la vista de login.
 
 ## Instrucciones:
 
