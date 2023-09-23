@@ -8,9 +8,10 @@ import viewsRouter from './routes/views.router.js';
 import sessionsRouter from './routes/sessions.router.js';
 import productsRouter from './routes/products.router.js'
 
+const urlMongo = 'mongodb+srv://mmunarriz:C0d3r@cluster0.hymhndd.mongodb.net/ecommerce'
 
 const app = express();
-const connection = mongoose.connect('mongodb+srv://mmunarriz:C0d3r@cluster0.hymhndd.mongodb.net/ecommerce', {
+const connection = mongoose.connect(urlMongo, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -19,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'))
 app.use(session({
     store: new MongoStore({
-        mongoUrl: 'mongodb+srv://mmunarriz:C0d3r@cluster0.hymhndd.mongodb.net/ecommerce',
+        mongoUrl: urlMongo,
         ttl: 3600
     }),
     secret: "3c0mm3rc3l0g1n",
