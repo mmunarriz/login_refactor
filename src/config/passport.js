@@ -29,6 +29,16 @@ export const initializePassport = () => {
 
     passport.use('login', new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
         try {
+            if (email === "adminCoder@coder.com" && password === "adminCod3r123") {
+                const user = {
+                    _id: "000000000000000000000000", // Simulado para que funcione 'passport.serializeUser'
+                    first_name: "Admin",
+                    last_name: "Coderhouse",
+                    email: email,
+                    user_type: "admin"
+                };
+                return done(null, user);
+            }
             const user = await userModel.findOne({ email });
             if (!user) {
                 console.log("No existe el usuario")
@@ -39,7 +49,7 @@ export const initializePassport = () => {
             }
             return done(null, user);
         } catch (error) {
-            return done(error)
+            return done('Error al loguear el usuario:' + error)
         }
     }));
 

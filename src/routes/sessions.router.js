@@ -5,10 +5,10 @@ const router = Router();
 
 router.post('/login', passport.authenticate('login', { failureRedirect: '/failLogin' }), async (req, res) => {
     if (!req.user) {
-        return res.status(400).send({ status: "error", error: "Credenciales invalidas" });
+        return res.status(401).send({ status: "error", error: "Credenciales invalidas" });
     }
     delete req.user.password;
-    // req.session.user = req.user;
+    // console.log(req.user)
     req.session.user = {
         name: `${req.user.first_name} ${req.user.last_name}`,
         email: req.user.email,
@@ -16,17 +16,22 @@ router.post('/login', passport.authenticate('login', { failureRedirect: '/failLo
     }
     res.send({ status: "success", payload: req.session.user })
 })
+
 router.get('/failLogin', (req, res) => {
-    res.send({ error: "Failed login" })
+    console.log("Entrando en failLogin");
+    res.send({ error: "Fallo el login" })
 })
 
 router.post('/register', passport.authenticate('register', { failureRedirect: '/failRegister' }), async (req, res) => {
+    if (!req.user) {
+        return res.status(401).send({ status: "error", error: "El usuario ya existe" });
+    }
     res.send({ status: "success", message: "Usuario registrado" })
 })
 
 router.get('/failRegister', async (req, res) => {
     console.log("Fallo la estrategia");
-    res.send({ error: "Failed register" });
+    res.send({ error: "Fallo el registro" });
 })
 
 export default router;
