@@ -11,5 +11,25 @@ form.addEventListener('submit', e => {
         headers: {
             'Content-Type': 'application/json'
         }
-    }).then(result => result.json()).then(json => console.log(json));
+    })
+        .then(response => {
+            if (response.status === 200) {
+                return response.json();
+            } else {
+                console.error('Error en el registro');
+            }
+        })
+        .then(data => {
+            if (data.status === "success") {
+                // Muestra un mensaje de confirmación de registro
+                alert("Usuario registrado correctamente");
+                // Redirigir al login
+                window.location.href = '/login';
+            }
+        })
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+        });
+
+
 })

@@ -26,7 +26,7 @@ router.post('/register', passport.authenticate('register', { failureRedirect: '/
     if (!req.user) {
         return res.status(401).send({ status: "error", error: "El usuario ya existe" });
     }
-    res.send({ status: "success", message: "Usuario registrado" })
+    res.status(200).json({ status: "success", message: "Usuario registrado correctamente" });
 })
 
 router.get('/failRegister', async (req, res) => {
