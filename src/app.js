@@ -7,6 +7,8 @@ import __dirname from './utils.js';
 import viewsRouter from './routes/views.router.js';
 import sessionsRouter from './routes/sessions.router.js';
 import productsRouter from './routes/products.router.js'
+import passport from 'passport';
+import { initializePassport } from './config/passport.js';
 
 const urlMongo = 'mongodb+srv://mmunarriz:C0d3r@cluster0.hymhndd.mongodb.net/ecommerce'
 
@@ -31,6 +33,10 @@ app.use(session({
 app.engine('handlebars', handlebars.engine());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'handlebars');
+
+initializePassport();
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', viewsRouter);
 app.use('/api/sessions', sessionsRouter);
