@@ -5,11 +5,11 @@ const collection = 'users';
 const schema = new mongoose.Schema({
     first_name: {
         type: String,
-        required: true
+        default: null
     },
     last_name: {
         type: String,
-        required: true
+        default: null
     },
     email: {
         type: String,
@@ -18,7 +18,7 @@ const schema = new mongoose.Schema({
     },
     age: {
         type: Number,
-        required: true
+        default: null
     },
     password: {
         type: String,
