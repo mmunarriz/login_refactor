@@ -34,4 +34,11 @@ router.get('/failRegister', async (req, res) => {
     res.send({ error: "Fallo el registro" });
 })
 
+router.get('/github', passport.authenticate('github', { scope: ['user:email'] }), async (req, res) => { })
+
+router.get('/githubCallback', passport.authenticate('github', { failureRedirect: '/loginFailed' }), async (req, res) => {
+    req.session.user = req.user;
+    res.redirect('/home')
+})
+
 export default router;

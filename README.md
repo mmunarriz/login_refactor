@@ -41,7 +41,3 @@ Rol de administrador:
 - Usuario: adminCoder@coder.com
 - Contraseña: adminCod3r123
 
-Rol de usuario:
-
-- Usuario: pepe@gmail.com
-- Contraseña: 123456
